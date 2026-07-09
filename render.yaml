@@ -1,0 +1,21 @@
+# Render Blueprint for D-PHISH
+# One-click deploy: https://render.com/deploy?repo=https://github.com/monawwerAlameri/dphish-deploy
+services:
+  - type: web
+    name: dphish
+    runtime: python
+    plan: free
+    region: oregon
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn -w 2 -b 0.0.0.0:$PORT --timeout 120 app:app
+    healthCheckPath: /
+    autoDeploy: true
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DATABASE_URL
+        sync: false  # User provides Neon connection string during deploy
+      - key: FLASK_DEBUG
+        value: "false"
+      - key: PYTHON_VERSION
+        value: "3.11.9"
