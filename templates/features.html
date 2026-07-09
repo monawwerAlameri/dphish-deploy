@@ -1,0 +1,318 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Features - D-phish Security</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        :root {
+            --cyber-blue: #00f3ff;
+            --cyber-purple: #b800ff;
+            --cyber-pink: #ff006e;
+            --cyber-green: #00ff88;
+            --dark-bg: #0a0e27;
+            --card-bg: rgba(15, 23, 42, 0.8);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background: var(--dark-bg);
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0a0e27 100%);
+            z-index: -2;
+        }
+
+        .cyber-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 243, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(50px); }
+        }
+
+        .header_section {
+            background: rgba(10, 14, 39, 0.95);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 4px 30px rgba(0, 243, 255, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid rgba(0, 243, 255, 0.2);
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            font-size: 1.8rem;
+            background: linear-gradient(135deg, var(--cyber-blue), var(--cyber-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: 2px;
+        }
+
+        .nav-link {
+            color: rgba(255, 255, 255, 0.8) !important;
+            font-weight: 600;
+            margin-left: 20px;
+            padding: 10px 20px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            letter-spacing: 1px;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--cyber-blue) !important;
+            background: rgba(0, 243, 255, 0.1);
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.3);
+        }
+
+        .features-container {
+            padding: 100px 0;
+            min-height: 100vh;
+        }
+
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--cyber-blue), var(--cyber-green));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.2rem;
+            margin-bottom: 60px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            border: 2px solid rgba(0, 243, 255, 0.3);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 243, 255, 0.1), transparent);
+            transition: left 0.6s;
+        }
+
+        .feature-card:hover::before {
+            left: 100%;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 50px rgba(0, 243, 255, 0.4);
+            border-color: var(--cyber-blue);
+        }
+
+        .feature-icon {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, var(--cyber-blue), var(--cyber-purple));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 2.5rem;
+            color: white;
+            box-shadow: 0 0 40px rgba(0, 243, 255, 0.5);
+            animation: iconPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes iconPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .feature-card h3 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--cyber-blue);
+            font-weight: 700;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        .feature-card p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        @media (max-width: 768px) {
+            .section-title { font-size: 2rem; }
+            .feature-card { padding: 30px 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="cyber-grid"></div>
+
+    <nav class="navbar navbar-expand-lg header_section">
+        <div class="container">
+            <a class="navbar-brand" href="{{ url_for('index') }}">
+                <i class="fas fa-shield-alt" style="margin-right: 10px;"></i>D-PHISH
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" style="background: var(--cyber-blue);">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('index') }}">HOME</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('about') }}">ABOUT</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="{{ url_for('features') }}">FEATURES</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('contact') }}">CONTACT</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('signup') }}">SIGN UP</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('login') }}">LOGIN</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="features-container">
+        <div class="container">
+            <h1 class="section-title animate__animated animate__fadeInDown">POWERFUL FEATURES</h1>
+            <p class="section-subtitle animate__animated animate__fadeInUp">Advanced protection powered by artificial intelligence</p>
+
+            <div class="feature-grid">
+                <div class="feature-card animate__animated animate__fadeInUp" style="animation-delay: 0.1s;">
+                    <div class="feature-icon"><i class="fas fa-brain"></i></div>
+                    <h3>AI-Powered Detection</h3>
+                    <p>Advanced machine learning model with 97.88% accuracy analyzes 29 different URL features for precise phishing detection.</p>
+                </div>
+
+                <div class="feature-card animate__animated animate__fadeInUp" style="animation-delay: 0.2s;">
+                    <div class="feature-icon"><i class="fas fa-bolt"></i></div>
+                    <h3>Real-Time Analysis</h3>
+                    <p>Get instant results in seconds. Our system processes URLs immediately to protect you from threats without delay.</p>
+                </div>
+
+                <div class="feature-card animate__animated animate__fadeInUp" style="animation-delay: 0.3s;">
+                    <div class="feature-icon"><i class="fas fa-shield-virus"></i></div>
+                    <h3>Multi-Layer Protection</h3>
+                    <p>Combines machine learning, heuristic analysis, and blocklists for comprehensive threat detection coverage.</p>
+                </div>
+
+                <div class="feature-card animate__animated animate__fadeInUp" style="animation-delay: 0.4s;">
+                    <div class="feature-icon"><i class="fas fa-lock"></i></div>
+                    <h3>Secure & Private</h3>
+                    <p>All processing done locally without external APIs. Your data stays private with industry-standard encryption.</p>
+                </div>
+
+                <div class="feature-card animate__animated animate__fadeInUp" style="animation-delay: 0.5s;">
+                    <div class="feature-icon"><i class="fas fa-history"></i></div>
+                    <h3>Complete History</h3>
+                    <p>Track all your URL checks with detailed reports, timestamps, and confidence scores for future reference.</p>
+                </div>
+
+                <div class="feature-card animate__animated animate__fadeInUp" style="animation-delay: 0.6s;">
+                    <div class="feature-icon"><i class="fas fa-bookmark"></i></div>
+                    <h3>Save & Organize</h3>
+                    <p>Save important URLs with custom notes and organize them for easy access whenever you need them.</p>
+                </div>
+
+                <div class="feature-card animate__animated animate__fadeInUp" style="animation-delay: 0.7s;">
+                    <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
+                    <h3>Detailed Analytics</h3>
+                    <p>Comprehensive dashboard with statistics about your checks, trends, and security insights over time.</p>
+                </div>
+
+                <div class="feature-card animate__animated animate__fadeInUp" style="animation-delay: 0.8s;">
+                    <div class="feature-icon"><i class="fas fa-user-shield"></i></div>
+                    <h3>User Authentication</h3>
+                    <p>Secure account system with encrypted passwords, session management, and profile customization options.</p>
+                </div>
+
+                <div class="feature-card animate__animated animate__fadeInUp" style="animation-delay: 0.9s;">
+                    <div class="feature-icon"><i class="fas fa-mobile-alt"></i></div>
+                    <h3>Fully Responsive</h3>
+                    <p>Works perfectly on all devices - desktop, tablet, and mobile. Access protection anywhere, anytime.</p>
+                </div>
+
+                <div class="feature-card animate__animated animate__fadeInUp" style="animation-delay: 1s;">
+                    <div class="feature-icon"><i class="fas fa-database"></i></div>
+                    <h3>Local Processing</h3>
+                    <p>No dependency on external APIs. Fast, reliable, and works offline with built-in detection algorithms.</p>
+                </div>
+
+                <div class="feature-card animate__animated animate__fadeInUp" style="animation-delay: 1.1s;">
+                    <div class="feature-icon"><i class="fas fa-sync-alt"></i></div>
+                    <h3>Auto Updates</h3>
+                    <p>Phishing blocklist and detection patterns automatically updated to protect against latest threats.</p>
+                </div>
+
+                <div class="feature-card animate__animated animate__fadeInUp" style="animation-delay: 1.2s;">
+                    <div class="feature-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <h3>Educational Insights</h3>
+                    <p>Learn about phishing tactics and security best practices through detailed threat analysis reports.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

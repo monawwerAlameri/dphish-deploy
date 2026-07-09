@@ -1,0 +1,288 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>History - D-phish Security</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        :root {
+            --cyber-blue: #00f3ff;
+            --cyber-purple: #b800ff;
+            --cyber-pink: #ff006e;
+            --cyber-green: #00ff88;
+            --dark-bg: #0a0e27;
+            --card-bg: rgba(15, 23, 42, 0.8);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background: var(--dark-bg);
+            color: #ffffff;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0a0e27 100%);
+            z-index: -2;
+        }
+
+        .cyber-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 243, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(50px); }
+        }
+
+        .header_section {
+            background: rgba(10, 14, 39, 0.95);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 4px 30px rgba(0, 243, 255, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid rgba(0, 243, 255, 0.2);
+        }
+
+        .navbar-brand {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            font-size: 1.8rem;
+            background: linear-gradient(135deg, var(--cyber-blue), var(--cyber-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: 2px;
+        }
+
+        .nav-link {
+            color: rgba(255, 255, 255, 0.8) !important;
+            font-weight: 600;
+            margin-left: 20px;
+            padding: 10px 20px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            letter-spacing: 1px;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--cyber-blue) !important;
+            background: rgba(0, 243, 255, 0.1);
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.3);
+        }
+
+        .history-container {
+            padding: 60px 0;
+            min-height: calc(100vh - 80px);
+        }
+
+        .page-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--cyber-blue), var(--cyber-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        .history-card {
+            background: var(--card-bg);
+            border: 2px solid rgba(0, 243, 255, 0.3);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 0 40px rgba(0, 243, 255, 0.2);
+        }
+
+        .check-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(0, 243, 255, 0.2);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .check-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: var(--cyber-blue);
+            transform: translateX(10px);
+            box-shadow: 0 0 30px rgba(0, 243, 255, 0.2);
+        }
+
+        .check-url {
+            color: var(--cyber-blue);
+            font-weight: 600;
+            font-size: 1.1rem;
+            word-break: break-all;
+            margin-bottom: 15px;
+        }
+
+        .check-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .check-date {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.95rem;
+        }
+
+        .check-result {
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: inline-block;
+        }
+
+        .check-result.safe {
+            background: rgba(0, 255, 136, 0.2);
+            color: var(--cyber-green);
+            border: 1px solid var(--cyber-green);
+        }
+
+        .check-result.phishing {
+            background: rgba(255, 0, 110, 0.2);
+            color: var(--cyber-pink);
+            border: 1px solid var(--cyber-pink);
+        }
+
+        .no-data {
+            text-align: center;
+            padding: 80px 20px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .no-data i {
+            font-size: 5rem;
+            margin-bottom: 25px;
+            opacity: 0.3;
+        }
+
+        .action-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, var(--cyber-blue), var(--cyber-purple));
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.3);
+        }
+
+        .action-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 40px rgba(0, 243, 255, 0.6);
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .page-title { font-size: 2rem; }
+            .check-meta { flex-direction: column; align-items: flex-start; }
+        }
+    </style>
+</head>
+<body>
+    <div class="cyber-grid"></div>
+
+    <nav class="navbar navbar-expand-lg header_section">
+        <div class="container">
+            <a class="navbar-brand" href="{{ url_for('index') }}">
+                <i class="fas fa-shield-alt" style="margin-right: 10px;"></i>D-PHISH
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" style="background: var(--cyber-blue);">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('dashboard') }}">DASHBOARD</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="{{ url_for('history') }}">HISTORY</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('saved_urls') }}">SAVED URLs</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('profile') }}">PROFILE</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('logout') }}">LOGOUT</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="history-container">
+        <div class="container">
+            <h1 class="page-title animate__animated animate__fadeInDown">SCAN HISTORY</h1>
+
+            <div class="history-card animate__animated animate__fadeInUp">
+                {% if checks %}
+                    {% for check in checks %}
+                    <div class="check-item animate__animated animate__fadeInLeft" style="animation-delay: {{ loop.index0 * 0.05 }}s;">
+                        <div class="check-url">
+                            <i class="fas fa-link"></i> {{ check.url }}
+                        </div>
+                        <div class="check-meta">
+                            <div class="check-date">
+                                <i class="far fa-calendar-alt"></i> {{ check.checked_at }}
+                            </div>
+                            <div class="check-result {{ 'phishing' if check.result == 'Phishing' else 'safe' }}">
+                                <i class="fas fa-{{ 'shield-virus' if check.result == 'Phishing' else 'shield-check' }}"></i>
+                                {{ check.result }} - Confidence: {{ (check.confidence * 100) | round(2) }}%
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="no-data">
+                        <i class="fas fa-history"></i>
+                        <h3 style="color: rgba(255, 255, 255, 0.7); margin-bottom: 20px;">No Scan History Yet</h3>
+                        <p>Your URL scanning history will appear here once you start checking URLs.</p>
+                        <a href="{{ url_for('index') }}" class="action-btn mt-4">
+                            <i class="fas fa-search"></i> Start Scanning
+                        </a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
